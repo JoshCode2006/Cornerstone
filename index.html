@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornerstone Tiles - Premium Tile Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #8B7355;
+            --light-brown: #A68B5B;
+            --cream: #F5F1E8;
+            --white: #FFFFFF;
+            --dark-text: #2C2C2C;
+            --light-text: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-decoration: none;
+            letter-spacing: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-brown);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-brown);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tile" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="none" stroke="rgba(139,115,85,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23tile)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.4);
+            background: var(--light-brown);
+        }
+
+        /* Tiles Section */
+        .tiles-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .tile-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tile-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(139, 115, 85, 0.2);
+        }
+
+        .tile-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 115, 85, 0.1) 0%, rgba(166, 139, 91, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .tile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tile-card:hover .tile-image::before {
+            opacity: 1;
+        }
+
+        .tile-card:hover .tile-image img {
+            transform: scale(1.05);
+        }
+
+        .tile-content {
+            padding: 30px;
+        }
+
+        .tile-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tile-content p {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .tile-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .tile-card.expanded .tile-details {
+            max-height: 200px;
+        }
+
+        .tile-specs {
+            margin-bottom: 20px;
+        }
+
+        .tile-specs span {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--primary-brown);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .contact-button {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .contact-button:hover {
+            background: var(--light-brown);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--cream);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-brown);
+        }
+
+        .submit-button {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .submit-button:hover {
+            background: var(--light-brown);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .about-image {
+            background: linear-gradient(45deg, var(--primary-brown), var(--light-brown));
+            border-radius: 20px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="about-tile" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse"><rect width="15" height="15" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23about-tile)"/></svg>');
+            opacity: 0.7;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .contact-item {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .contact-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        footer {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tiles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Cornerstone</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tiles">Tiles</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Premium Tiles for Every Space</h1>
+            <p>Transform your home with our curated collection of premium tiles. From modern minimalism to classic elegance, find the perfect tiles to bring your vision to life.</p>
+            <a href="#tiles" class="cta-button">Explore Collection</a>
+        </div>
+    </section>
+
+    <section class="tiles-section" id="tiles">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Tile Collection</h2>
+                <p>Discover our carefully curated selection of premium tiles, each chosen for its quality, beauty, and versatility.</p>
+            </div>
+
+            <div class="tiles-grid">
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="inkjet.png" alt="Inkjet Wall Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Inkjet Wall Tiles</h3>
+                        <p>Premium inkjet wall tiles with stunning digital printing technology for superior detail and clarity.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>250 x 400mm</span>
+                                <span>Inkjet Print</span>
+                                <span>Wall Use</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Inkjet Wall Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="STEREOSCOPIC.png" alt="Stereoscopic Wall Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Stereoscopic Wall Tiles</h3>
+                        <p>Three-dimensional wall tiles that create depth and visual interest with raised patterns.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>250 x 400mm</span>
+                                <span>3D Texture</span>
+                                <span>Decorative</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Stereoscopic Wall Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="crack.png" alt="Crack Wall Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Crack Wall Tiles</h3>
+                        <p>Artistic crack-effect wall tiles that add character and vintage charm to any space.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>250 x 500mm</span>
+                                <span>Crack Effect</span>
+                                <span>Artistic Finish</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Crack Wall Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="SUPER CRACK.png" alt="Super Crack Wall Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Super Crack Wall Tiles</h3>
+                        <p>Enhanced crack-effect tiles with deeper textures and more pronounced vintage appeal.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>250 x 500mm</span>
+                                <span>Super Crack</span>
+                                <span>Premium Texture</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Super Crack Wall Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="VITRIFIED.png" alt="Vitrified Floor Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Vitrified Floor Tiles</h3>
+                        <p>High-strength vitrified tiles perfect for heavy traffic areas with excellent durability.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>300 x 300mm</span>
+                                <span>Vitrified</span>
+                                <span>High Traffic</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Vitrified Floor Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="VITRIFIED & RUSTIC.png" alt="Rustic Floor Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Rustic Floor Tiles</h3>
+                        <p>Natural-look rustic tiles that bring warmth and character to residential and commercial spaces.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>300 x 300mm</span>
+                                <span>Rustic Finish</span>
+                                <span>Natural Look</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Rustic Floor Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="GLAZED.png" alt="Glazed Floor Tiles" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Glazed Floor Tiles</h3>
+                        <p>Premium glazed floor tiles with a smooth, lustrous finish that's easy to maintain.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>400 x 400mm</span>
+                                <span>Glazed Finish</span>
+                                <span>Easy Clean</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Glazed Floor Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <img src="black glazed.png" alt="Black Glazed Floor Tiles" style="filter: grayscale(20%) brightness(0.7);" />
+                    </div>
+                    <div class="tile-content">
+                        <h3>Black Glazed Floor Tiles</h3>
+                        <p>Elegant black glazed tiles that add sophistication and modern style to any interior.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>400 x 400mm</span>
+                                <span>Black Glazed</span>
+                                <span>Contemporary</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Black Glazed Floor Tiles')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Cornerstone</h2>
+                    <p>At Cornerstone Tiles, we craft premium tile solutions that blend elegance with purpose. Every tile is part of a larger story—a reflection of taste, vision, and detail.</p>
+                    
+                    <p>From luxurious marble to versatile ceramics, our curated collection is designed to elevate interiors with timeless style and modern flair. We work hand-in-hand with architects, designers, and homeowners to transform ordinary spaces into lasting impressions.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <h4>Premium Quality</h4>
+                            <p>Hand-selected tiles from the world's finest manufacturers</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Expert Guidance</h4>
+                            <p>Professional consultation for every project</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Custom Solutions</h4>
+                            <p>Tailored designs for unique spaces</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Installation Support</h4>
+                            <p>Professional installation services available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="contact-item">
+                        <h4>Visit Our Showroom</h4>
+                        <p>Plot - 21 Along Mobil Road, Ikota, Housing Estate, Opp. V.I.O Office, Gedegede B/Stop, Ajah, Lagos.<br><br>
+                        Monday - Saturday: 8AM - 8PM</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Call Us</h4>
+                        <p>Phone: 070 497 451 14</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Email Us</h4>
+                        <p>Email: ######</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="mainContactForm">
+                        <div class="form-group">
+                            <label for="mainName">Name</label>
+                            <input type="text" id="mainName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mainEmail">Email</label>
+                            <input type="email" id="mainEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mainPhone">Phone</label>
+                            <input type="tel" id="mainPhone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="mainSubject">Subject</label>
+                            <input type="text" id="mainSubject" name="subject" placeholder="How can we help you?">
+                        </div>
+                        <div class="form-group">
+                            <label for="mainMessage">Message</label>
+                            <textarea id="mainMessage" name="message" rows="5" placeholder="Tell us about your project or ask any questions..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cornerstone Tiles</h3>
+                    <p>Your trusted partner in premium tile solutions. We bring quality, beauty, and innovation to every project.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: ######<br>
+                    Phone: 070 497 451 14<br>
+                    Address: Plot - 21 Along Mobil Road, Ikota, Housing Estate, Opp. V.I.O Office, Gedegede B/Stop, Ajah, Lagos.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Tile Installation<br>
+                    Design Consultation<br>
+                    Custom Solutions<br>
+                    Maintenance Support</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cornerstone Tiles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3>Contact Us</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="tileType">Tile of Interest</label>
+                    <input type="text" id="tileType" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="Tell us about your project..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("F_Tymx_5cw_hl7_Un"); 
+        
+        function toggleTile(card) {
+            // Close other expanded tiles
+            const allCards = document.querySelectorAll('.tile-card');
+            allCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current tile
+            card.classList.toggle('expanded');
+        }
+
+        function openModal(tileType) {
+            event.stopPropagation();
+            const modal = document.getElementById('contactModal');
+            const tileInput = document.getElementById('tileType');
+            tileInput.value = tileType;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Handle tile contact form submission (Modal)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                tileType: document.getElementById('tileType').value,
+                message: document.getElementById('message').value,
+                form_type: 'Tile Inquiry'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send("service_xpfotgy","template_nnyzy25", formData)
+                .then(function() {
+                    alert(`Thank you ${formData.name}! We'll contact you soon about the ${formData.tileType} tiles.`);
+                    document.getElementById('contactForm').reset();
+                    closeModal();
+                })
+                .catch(function(error) {
+                    console.error('EmailJS error:', error);
+                    alert('Sorry, there was an error sending your message. Please try again or contact us directly.');
+                });
+        });
+
+        // Handle main contact form submission
+        document.getElementById('mainContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('mainName').value,
+                email: document.getElementById('mainEmail').value,
+                phone: document.getElementById('mainPhone').value,
+                subject: document.getElementById('mainSubject').value,
+                message: document.getElementById('mainMessage').value,
+                form_type: 'General Inquiry'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send("service_xpfotgy","template_lOwt7v8", formData)
+                .then(function() {
+                    alert(`Thank you ${formData.name}! Your message has been sent successfully. We'll get back to you soon.`);
+                    document.getElementById('mainContactForm').reset();
+                })
+                .catch(function(error) {
+                    console.error('EmailJS error:', error);
+                    alert('Sorry, there was an error sending your message. Please try again or contact us directly.');
+                });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--white) 0%, var(--cream) 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
