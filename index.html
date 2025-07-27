@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cornerstone Tiles - Premium Tile Collection</title>
+    <title>Cornerstone Tiles</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
@@ -55,12 +56,19 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-brown);
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: -2px;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -575,7 +583,40 @@
             margin-top: 40px;
         }
 
-        /* Responsive Design */
+        /* Others Card Special Styling */
+        .others-card .tile-image {
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--light-brown) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .others-placeholder {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .others-icon {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .others-icon svg {
+            stroke: var(--white);
+        }
+
+        .others-placeholder h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .others-card:hover .others-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -594,13 +635,19 @@
             .nav-links {
                 display: none;
             }
+
+            .logo img {
+                height: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo">Cornerstone</a>
+            <a href="#" class="logo">
+                <img src="logo.jpg" alt="Cornerstone Tiles Logo" />
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#tiles">Tiles</a></li>
@@ -769,6 +816,34 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="tile-card others-card" onclick="toggleTile(this)">
+                    <div class="tile-image">
+                        <div class="others-placeholder">
+                            <div class="others-icon">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </div>
+                            <h4>Custom & More</h4>
+                        </div>
+                    </div>
+                    <div class="tile-content">
+                        <h3>Other Tile Types</h3>
+                        <p>Looking for something specific? We offer a wide range of additional tile options including custom designs, specialty finishes, and unique materials.</p>
+                        <div class="tile-details">
+                            <div class="tile-specs">
+                                <span>Custom Sizes</span>
+                                <span>Specialty Finishes</span>
+                                <span>Unique Materials</span>
+                            </div>
+                            <button class="contact-button" onclick="openModal('Other Tile Types - Custom Request')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -825,7 +900,7 @@
                     
                     <div class="contact-item">
                         <h4>Email Us</h4>
-                        <p>Email: ######</p>
+                        <p>Email: onyekachizube@gmail.com</p>
                     </div>
                 </div>
                 
@@ -868,7 +943,7 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
-                    <p>Email: ######<br>
+                    <p>Email: onyekachizube@gmail.com<br>
                     Phone: 070 497 451 14<br>
                     Address: Plot - 21 Along Mobil Road, Ikota, Housing Estate, Opp. V.I.O Office, Gedegede B/Stop, Ajah, Lagos.</p>
                 </div>
